@@ -2,6 +2,11 @@
 int x = 0;
 int y = 0;
 int body = #8993A0;
+float mx;
+float my;
+float bx;
+float by;
+float easing = 0.05;
 
 void setup() {
   size(480, 480);
@@ -53,7 +58,11 @@ void setup() {
 }
 
 void draw() { 
-  if (keyPressed && key == CODED) {
+  float mx1 = constrain(mx, 190, 210); // eye 1
+float my1 = constrain(my, 127, 155);  // eye 1
+float mx2 = constrain(mx,270,290 ); // eye 2
+float my2 = constrain(my, 127, 155);  // eye 2
+  if (keyPressed) {
     if (keyCode == LEFT) {  
       x -= 15;
     } else if (keyCode == RIGHT) {
@@ -69,7 +78,10 @@ void draw() {
     } else if (keyCode == ALT) {
       body = #8993A0;
     }
-    background (240);
+}
+ background (240);
+    stroke (0);
+    fill(body);
     //body
     ellipse(x + 240, y + 310, 290, 290);
 
@@ -92,9 +104,7 @@ void draw() {
     ellipse(x + 200, y + 140, 50, 50);
     ellipse(x + 280, y + 140, 50, 50);
     fill(0);
-    stroke(0);
-    ellipse(x + 200, y + 140, 10, 10);
-    ellipse(x + 280, y + 140, 10, 10);
+   
     //trunk
     fill(body);
     stroke(0);
@@ -111,5 +121,13 @@ void draw() {
     vertex(x + 275, y + 240);
     vertex(x + 290, y + 195);
     endShape();
-  }
+   fill(0);
+ stroke(0);
+ if (abs(mouseX-mx) > 0.1) {
+   mx = mx +(mouseX - mx) * easing;
+ } if (abs(mouseY-my) > 0.1) {
+   my = my +(mouseY - my) * easing;
+ }
+  ellipse(mx1, my1, 15, 15);
+  ellipse(mx2, my2, 15, 15);
 }
