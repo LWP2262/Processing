@@ -1,11 +1,9 @@
-//Laurel Parsley 10/21/16
+//Laurel Parsley 11/7/16
 int x = 0;
 int y = 0;
 int body = #8993A0;
 float mx;
 float my;
-float bx;
-float by;
 float easing = 0.05;
 
 void setup() {
@@ -124,10 +122,10 @@ void draw() {
   fill(0);
   stroke(0);
   if (abs(mouseX-mx) > 0.1) {
-    mx = mx +(mouseX - mx) * easing;
+    mx = mx +(mouseX - mx - x) * easing;
   } 
   if (abs(mouseY-my) > 0.1) {
-    my = my +(mouseY - my) * easing;
+    my = my +(mouseY - my - y) * easing;
   }
   ellipse(x+mx1, y+ my1, 15, 15);
   ellipse(x+mx2, y+ my2, 15, 15);
